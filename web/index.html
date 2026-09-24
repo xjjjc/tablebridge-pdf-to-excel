@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TableBridge · PDF to Excel</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><div class="brand"><span class="brand-icon">T</span>TableBridge <span class="version">v0.1</span></div><span class="local"><i></i> 本机处理 · Local processing</span></header>
+<main>
+<section class="intro"><p class="eyebrow">FIXED-LAYOUT PDF → EXCEL</p><h1>重复的表格，<br><span>一次整理清楚。</span></h1><p class="lede">导入相同版式的 PDF，将表格整理为可筛选的 Excel。<br>保留原始文本和来源页码，让每一行都能核对。</p><div class="chips"><span>不需要 API 密钥</span><span>支持批量文件</span><span>保留编号前导零</span></div></section>
+<div class="workspace">
+<section class="card input-card"><div class="section-head"><span class="step">01</span><h2>选择 PDF</h2><span class="muted">每个 ≤10 MB</span></div>
+<label class="dropzone" id="dropzone" for="pdfs"><span class="file-icon">PDF</span><strong>点击选择，或拖入文件</strong><span>最多 10 个文件，批次总大小 ≤20 MB</span><input id="pdfs" type="file" accept="application/pdf,.pdf" multiple></label>
+<div id="file-list" class="file-list"></div>
+<div class="demo-row"><span>还没有合适的文件？</span><button id="demo" class="text-button">使用示例报价单</button><a href="/sample.pdf" download="demo-quotation.pdf">下载 PDF</a></div>
+<div class="divider"></div><div class="section-head"><span class="step">02</span><h2>确认版式模板</h2></div>
+<div class="template-summary"><div><strong id="template-name">示例报价单</strong><p>Item · Description · Qty · Unit price · Amount</p></div><span class="pill">严格匹配</span></div>
+<p class="scope">适用：文字可选中、每页一个带线表格、每页重复表头。扫描件、合并单元格和无边框表格不在本版支持范围。</p>
+<details><summary>调整模板 / Template settings</summary><p class="scope">不同客户的文件需要单独适配。区域坐标按页面宽高比例填写；首行必须与列名一致。未修改时直接使用示例模板。</p><textarea id="template" spellcheck="false" aria-label="JSON template"></textarea><div class="template-buttons"><button id="reset" class="secondary">恢复示例模板</button><button id="save-template" class="secondary">保存模板</button><label class="secondary" for="template-file">导入模板</label><input id="template-file" type="file" accept=".json" hidden></div></details>
+<button class="primary" id="convert" disabled>转换并预览 <span>→</span></button><p class="privacy">文件仅发送到这台电脑上的程序，不调用云端识别或 AI 服务。</p>
+</section>
+<section class="card result-card"><div class="section-head"><span class="step">03</span><h2>预览与导出</h2></div><div id="status" role="status" aria-live="polite"></div>
+<div id="empty" class="empty"><div class="sheet-art"><span></span><span></span><span></span><span></span><span></span><span></span></div><h3>结果将在这里显示</h3><p>先试用示例，查看两页报价单<br>如何合并为一份 Excel。</p></div>
+<div id="result" hidden><div class="stats"><div><strong id="row-count">0</strong><span>数据行</span></div><div><strong id="page-count">0</strong><span>来源页</span></div><div><strong id="file-count">0</strong><span>文件</span></div></div><div id="warnings"></div><div class="table-wrap"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div><p id="preview-note" class="scope"></p><a class="primary download" id="download" download="tablebridge-export.xlsx">下载 Excel <span>↓</span></a><p class="scope">包含 Data、Raw text、Review 三张表。请对照 PDF 核对后交付。</p></div>
+</section></div>
+<footer><span>TableBridge · A small, focused document tool.</span><span>本地运行 / Local only</span></footer>
+</main><script src="/app.js"></script></body></html>
