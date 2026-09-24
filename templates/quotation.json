@@ -1,0 +1,13 @@
+{
+  "name": "Demo quotation / 示例报价单",
+  "page_size": [612, 792],
+  "bbox": [0.06, 0.20, 0.94, 0.86],
+  "columns": [
+    {"name": "Item", "type": "text"},
+    {"name": "Description", "type": "text"},
+    {"name": "Qty", "type": "number"},
+    {"name": "Unit price", "type": "number"},
+    {"name": "Amount", "type": "number"}
+  ],
+  "checks": [{"left": "Qty", "right": "Unit price", "equals": "Amount"}]
+}
